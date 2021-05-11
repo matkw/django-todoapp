@@ -1,0 +1,27 @@
+{% extends 'todoapp/base.html' %}
+
+{% block title %}
+<title>To-Do App</title>
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+<form action="add_task/" method="post">
+<div class="input-group">
+<input type="text" class="form-control" placeholder="Task name" name='task_name'>
+<input type="submit" value="Submit">
+</div>
+</form>
+<br>
+ <ul class="list-group">
+   {% for task in task_list %}
+   <li class="list-group-item">{{ task.name }}<form action="delete_task/{{task.id}}/" method="post">
+    <input type="submit" value="Delete">
+</form>
+</li>
+   {% endfor %}
+   <form action="clear_task_list/" method="post">
+    <input type="submit" value="Clear all!">
+
+</ul>
+</div>
+{% endblock %}
